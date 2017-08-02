@@ -53,7 +53,7 @@ app.factory("Share", function($rootScope, $http){
 
 	// mem["processos"] = processos
 
-	if (process.env.NODE_ENV === 'production'){
+	
 		return {
 			// store: (key, value) => { 
 			// 	mem[key] = value
@@ -62,41 +62,42 @@ app.factory("Share", function($rootScope, $http){
 			// 	return mem[key]
 			// },
 			getCadastro: function(){
-				 return $http.get("http://localhost:3000/cadastro/")
+				 return $http.get("/cadastro/")
 			},
 			getIdCadastro: function(id){
-				 return $http.get("http://localhost:3000/cadastro/"+id)
+				 return $http.get("/cadastro/"+id)
 			},
 			saveCadastro: function(register){
-				return $http.post("http://localhost:3000/cadastro/", register);
+				return $http.post("/cadastro/", register);
 			},
 			removeCadastro: function(id, register){
-				return $http.delete("http://localhost:3000/cadastro/"+id)
+				return $http.delete("/cadastro/"+id)
 			},
 			updateCadastro: function(id, register){
-				return $http.put("http://localhost:3000/cadastro/"+id, register);
+				return $http.put("/cadastro/"+id, register);
 			}
 		}
-	}
-	else{
+	
+		// return {
 		
-			getCadastro: function(){
-				 return $http.get("https://radiant-sea-38939.herokuapp.com/cadastro/")
-			},
-			getIdCadastro: function(id){
-				 return $http.get("https://radiant-sea-38939.herokuapp.com/cadastro/"+id)
-			},
-			saveCadastro: function(register){
-				return $http.post("https://radiant-sea-38939.herokuapp.com/", register);
-			},
-			removeCadastro: function(id, register){
-				return $http.delete("https://radiant-sea-38939.herokuapp.com/"+id)
-			},
-			updateCadastro: function(id, register){
-				return $http.put("https://radiant-sea-38939.herokuapp.com/"+id, register);
-			}
-		}
-	}
+		// 	getCadastro: function(){
+		// 		 return $http.get("https://radiant-sea-38939.herokuapp.com/cadastro/")
+		// 	},
+		// 	getIdCadastro: function(id){
+		// 		 return $http.get("https://radiant-sea-38939.herokuapp.com/cadastro/"+id)
+		// 	},
+		// 	saveCadastro: function(register){
+		// 		return $http.post("https://radiant-sea-38939.herokuapp.com/", register);
+		// 	},
+		// 	removeCadastro: function(id, register){
+		// 		return $http.delete("https://radiant-sea-38939.herokuapp.com/"+id)
+		// 	},
+		// 	updateCadastro: function(id, register){
+		// 		return $http.put("https://radiant-sea-38939.herokuapp.com/"+id, register);
+		// 	}
+		// }
+
+
 
 });
 
