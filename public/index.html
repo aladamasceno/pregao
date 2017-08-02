@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ptbr" ng-app="pregaoApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Controle do processo de pregão eletrônico</title>
+	<link rel="stylesheet" href='/lib/bootstrap/dist/css/bootstrap.css'>
+	<!-- <base href="/"> -->
+	<link rel="stylesheet" href='/assets/css/style.css'>
+	
+</head>
+<body >
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li><a href="#!/">Home</a></li>
+				<li><a href="#!/cadastro">Cadastro</a></li>
+				<li><a href="#!/query">Consulta</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#!/login"><span class="glyphicon glyphicon-user"></span></a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
+			</ul>
+		</div>
+
+	</nav>
+
+	<div ng-view class="container-fluid col-sm-12">
+		
+	</div>
+	<footer class="footer">
+		<div class="container-fluid col-sm-12 text-right">
+			<span>&copy Copyright <span id="cyear"></span>, Alã Damasceno & Estefano. All rights reserved.</span>
+		</div>
+	</footer>
+		
+	
+</main>
+<script type="text/javascript" src="/lib/angular/angular.js"></script>
+<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="/lib/angular-input-masks/releases/angular-input-masks-standalone.min.js"></script>
+
+<script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="/app.js"></script>
+<script type="text/javascript" src="/app/services/shareFactory.js"></script>
+<script type="text/javascript" src="/app/controllers/cadastroCtrl.js"></script>
+<script type="text/javascript" src="/app/controllers/queryCtrl.js"></script>
+<script type="text/javascript" src="/assets/js/scripts.js"></script>
+
+</body>
+</html>

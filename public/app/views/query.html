@@ -1,0 +1,104 @@
+<div class=" col-sm-12">
+		<input type="text" class="form-control" ng-model="Query.pesquisa" placeholder="Pesquisa">
+		<table class="table  table-responsive table-striped">
+			<thead>
+				<th></th>
+				<th>ID</th>
+				<th>Unidade</th>
+				<th>Entrada</th>
+				<th>Erros</th>
+				<th>Providências</th>
+				<th>Saída SAEB</th>
+				<th>Ofício SAEB</th>
+				<th>Retorno SAEB</th>
+				<th>Retorno UG</th>
+				<th>Ofício UG</th>
+			</thead>
+			<tbody>
+				
+				<tr ng-repeat="register in Query.processos | filter: Query.pesquisa">
+					<td>{{ $index }}</td>
+					<td>{{ register._id }}</td>
+					<td>{{ register.unidade }}</td>
+					<td>{{ register.entrada | date: "dd/MM/yy" }}</td>
+					<td>{{ register.erros }}</td>
+					<td>{{ register.providencias }}</td>
+					<td>{{ register.saeb.saida | date: "dd/MM/yy" }}</td>
+					<td>{{ register.saeb.oficio }}</td>
+					<td>{{ register.saeb.retorno | date: "dd/MM/yy" }}</td>
+					<td>{{ register.ug.retorno | date: "dd/MM/yy"  }}</td>
+					<td>{{ register.ug.oficio }}</td>
+										<td>
+						<button  class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal" ng-click="Query.getIdRegister(register._id)">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+						<button  class="btn btn-sm btn-danger" ng-click="Query.removeRegister(register._id)">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+</div>
+
+<div id="modal" class="modal fade " role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edição</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" class="form-horizontal">
+        	<div class="form-group ">
+        	<div class="row">
+        		<div class="col-sm-4 col-sm-push-1">
+        			
+        			<input type="text" class="form-control" ng-model="Query.processo.unidade" >
+        		</div>
+        	</div>
+        		
+        	</div>
+
+        	<div class="form-group ">
+        	<div class="row">
+        		<div class="col-sm-4 col-sm-push-1">
+        			
+        			<label for="entrada">Entrada</label>
+        			 <input class="form-control" type="date" ng-model="Query.processo.entrada">
+        		</div>
+
+        	</div>
+        		
+        	</div>
+
+        	<div class="form-group ">
+        	<div class="row">
+        		<div class="col-sm-4 col-sm-push-1">
+        			
+        			<label for="erros">Inconsistências</label>
+        			<input id="erros" type="text" class="form-control" value="{{ Query.processo.erros}}" ng-model="Query.processo.erros">
+        		</div>
+        		
+        	</div>
+        	
+        		
+        	</div>
+
+
+        	{{Query.processo}}
+        </form>
+		
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="Query.editRegister(Query.processo)">Salvar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>

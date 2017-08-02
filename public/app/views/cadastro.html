@@ -1,0 +1,157 @@
+<div class="register container-fluid col-sm-6  col-sm-push-1">
+	<h3 class="text-center">Cadastro processo</h3>
+	{{Cadastro.processo}}
+	<form action="" class="form-horizontal">
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-4">
+					
+					<select class="form-control"  name="unidade" ng-model="Cadastro.processo.unidade" ng-options="unit.cod as unit.und for unit in Cadastro.units | orderBy:'cod'">
+						<option value="">Selecione a Unidade</option>
+					</select>
+				</div>
+				
+			</div>
+		</div>
+
+
+		<br><br>
+
+		<div class="form-group">
+			<h4>Processo</h4>	
+			Entrada
+			<input class="form-control" type="date" placeholder="Entrada" name="entrada" ng-model="Cadastro.processo.entrada">
+			<select class="form-control" type="text" placeholder="Erros" name="erros" ng-model="Cadastro.processo.erros" ng-options="error for error in Cadastro.errors">
+				<option value="">Erro</option>
+			</select>
+			<input class="form-control" type="text" placeholder="Providências" name="providencias" ng-model="Cadastro.processo.providencias">
+		</div>
+		<div class="form-group">
+			Saída SAEB
+			<div class="row">
+				<div class="col-sm-4">
+					<input class="form-control" type="date" placeholder="Saída SAEB" name="saeb-saida" ng-model="Cadastro.processo.saeb.saida">
+				</div>
+				<div class="col-sm-4">
+					<input class="form-control" type="text" placeholder="Nº Ofício" name="saeb-oficio" ng-model="Cadastro.processo.saeb.oficio">
+				</div>
+
+			</div>
+			
+		</div>
+		<div class="form-group">
+			Retorno SAEB
+			<div class="row">
+				<div class="col-sm-4">
+					<input class="form-control" type="date" placeholder="Retorno SAEB" name="saeb-retorno" ng-model="Cadastro.processo.saeb.retorno">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			Retorno UG
+			<div class="row">
+				<div class="col-sm-4">
+					<input class="form-control" type="date" placeholder="Retorno UG" name="ug-retorno" ng-model="Cadastro.processo.ug.retorno">
+				</div>
+				<div class="col-sm-4">
+					<input class="form-control" type="text" placeholder="Nº Ofício" name="ug-oficio" ng-model="Cadastro.processo.ug.oficio">
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h4>Servidor(es)</h4>
+			<div class="row">
+				<div class="col-sm-1">
+					Vigência:
+				</div>
+				<div class="col-sm-3">
+						<input class="form-control" type="date" placeholder="" name="inicio" ng-model="Cadastro.processo.servidor.vigencia.inicio">
+				</div>
+				<div class="col-sm-3">
+						<input class="form-control" type="date" placeholder="" name="termino" ng-model="Cadastro.processo.servidor.vigencia.termino">
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<div class="col-sm-2 btn-group">
+				<button type="button"class="btn btn-default btn-sm" ng-click="Cadastro.addServ()"><span class="glyphicon glyphicon-plus"></span></button>
+				<button type="button" class="btn btn-default btn-sm" ng-click="Cadastro.rmServ()" ng-disabled = "Cadastro.status"><span class="glyphicon glyphicon-minus"></span></button>
+			</div>
+		</div>
+		<div class="form-group" ng-repeat="serv in Cadastro.serv" >
+
+			<div class="row">
+				<div class="col-sm-9">
+					<input class="form-control" type="text" placeholder="Nome do servidor" name="nome" ng-model="Cadastro.processo.servidor. persons[$index].nome">
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" type="text" placeholder="Função" name="funcao" ng-model="Cadastro.processo.servidor.persons[$index].funcao" ng-options="funcao for funcao in Cadastro.funcao">
+						<option value="">Função</option> 
+					</select>
+					
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-4">
+					<input class="form-control" type="text" placeholder="Matrícula" name="mat" ng-model="Cadastro.processo.servidor.persons[$index].mat">
+				</div>
+				<div class="col-sm-4">
+					<input class="form-control" type="text" placeholder="Chave" name="chave" ng-model="Cadastro.processo.servidor.persons[$index].chave">
+				</div>
+				<div class="col-sm-4">
+					<input class="form-control" type="text" placeholder="Senha" name="senha" ng-model="Cadastro.processo.servidor.persons[$index].senha">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					Existem erros?
+					<input class="radio-inline" type="radio"  ng-model="Cadastro.processo.servidor.persons[$index].existError" value="true"> Sim
+  					<input class="radio-inline" type="radio"    ng-model="Cadastro.processo.servidor.persons[$index].existError" checked>Não
+				</div>
+			</div>
+			<div class="row" ng-if="Cadastro.processo.servidor.persons[$index].existError" >
+				<br/>
+        		<div class="col-sm-12 col-sm-push-1">
+        			<h5>Ausência e/ou erro:</h5>
+        			<div ng-repeat="err in Cadastro.errors2 ">
+						<div class="col-sm-6">
+						   	<input type="checkbox" ng-model="Cadastro.processo.servidor.persons[$parent.$index].erros[err.id]" >        				 
+        				 <span>{{ err.id }}</span>
+        				 </div>
+        			</div>
+        		</div>
+        	</div>
+
+		</div>
+		<br>
+		<div class="form-group">
+			<div class="row">
+					
+			<button type="button" class="btn btn-success" ng-click="Cadastro.fixSaveProcess(Cadastro.processo)">Cadastrar</button>
+			<button type="reset" class="btn btn-warning" >Limpar</button>				
+			</div>
+		</div>
+
+	</form>
+
+	<div ng-if="Cadastro.alertSuccess" class="alert alert-success"><strong>Cadastro realizado com sucesso!</strong></div>
+
+	<div ng-if="Cadastro.alertDanger" class="alert alert-danger"><strong>Sem registros para cadastrar</strong></div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+
+</div>
+
+
