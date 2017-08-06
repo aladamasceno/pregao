@@ -3,6 +3,8 @@ app.controller("queryCtrl", ["Share", queryCtrl]);
 function queryCtrl(Share){
 	var vm = this;
 	// vm.processos = Share.get("processos");
+	
+
 	vm.getRegister = function(){
 		Share.getCadastro()
 			.then(function(response){

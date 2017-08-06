@@ -1,51 +1,51 @@
 <div class=" col-sm-12">
 		<input type="text" class="form-control" ng-model="Query.pesquisa" placeholder="Pesquisa">
-		<table class="table  table-responsive table-striped">
-			<thead>
-				<th></th>
-				<th>ID</th>
-				<th>Unidade</th>
-				<th>Entrada</th>
-				<th>Erros</th>
-				<th>Providências</th>
-				<th>Saída SAEB</th>
-				<th>Ofício SAEB</th>
-				<th>Retorno SAEB</th>
-				<th>Retorno UG</th>
-				<th>Ofício UG</th>
-			</thead>
-			<tbody>
-				
-				<tr ng-repeat="register in Query.processos | filter: Query.pesquisa">
-					<td>{{ $index }}</td>
-					<td>{{ register._id }}</td>
-					<td>{{ register.unidade }}</td>
-					<td>{{ register.entrada | date: "dd/MM/yy" }}</td>
-					<td>{{ register.erros }}</td>
-					<td>{{ register.providencias }}</td>
-					<td>{{ register.saeb.saida | date: "dd/MM/yy" }}</td>
-					<td>{{ register.saeb.oficio }}</td>
-					<td>{{ register.saeb.retorno | date: "dd/MM/yy" }}</td>
-					<td>{{ register.ug.retorno | date: "dd/MM/yy"  }}</td>
-					<td>{{ register.ug.oficio }}</td>
-										<td>
-						<button  class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal" ng-click="Query.getIdRegister(register._id)">
-							<span class="glyphicon glyphicon-pencil"></span>
-						</button>
-						<button  class="btn btn-sm btn-danger" ng-click="Query.removeRegister(register._id)">
-							<span class="glyphicon glyphicon-trash"></span>
-						</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			
+			<table class="table table-condensed table-striped table-hover table-xs">
+				<thead>
+					<th></th>
+					<th>Unidade</th>
+					<th>Entrada</th>
+					<th>Providências</th>
+					<th>Saída SAEB</th>
+					<th>Ofício SAEB</th>
+					<th>Retorno SAEB</th>
+					<th>Retorno UG</th>
+					<th>Ofício UG</th>
+				</thead>
+				<tbody>
+					
+					<tr ng-repeat="register in Query.processos | filter: Query.pesquisa" >
+						<td>{{ $index }}</td>
+						<td>{{ register.unidade }}</td>
+						<td>{{ register.entrada | date: "dd/MM/yy" }}</td>
+						<td>{{ register.providencias }}</td>
+						<td>{{ register.saeb.saida | date: "dd/MM/yy" }}</td>
+						<td>{{ register.saeb.oficio }}</td>
+						<td>{{ register.saeb.retorno | date: "dd/MM/yy" }}</td>
+						<td>{{ register.ug.retorno | date: "dd/MM/yy"  }}</td>
+						<td>{{ register.ug.oficio }}</td>
+											<td>
+							<button  class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal" ng-click="Query.getIdRegister(register._id)">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button>
+							<button  class="btn btn-sm btn-danger" ng-click="Query.removeRegister(register._id)">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
 
 </div>
 
+<!-- MODAL -->
+
 <div id="modal" class="modal fade " role="dialog">
   <div class="modal-dialog modal-lg">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -55,38 +55,116 @@
       <div class="modal-body">
         <form action="" class="form-horizontal">
         	<div class="form-group ">
-        	<div class="row">
-        		<div class="col-sm-4 col-sm-push-1">
-        			
-        			<input type="text" class="form-control" ng-model="Query.processo.unidade" >
+	        	<div class="row">
+	        		<div class="col-sm-4 col-sm-push-1">
+	        			<div class="input-group">
+		        			<span class="input-group-addon"><label for="unidade">Unidade</label></span>
+		        			<input type="text" id="unidade" class="form-control" ng-model="Query.processo.unidade" >
+	        			</div>
+
+	        		</div>
+	        			 <div class="col-sm-4 col-sm-push-2">
+	        			 <div class="input-group">
+	        			 	<div class="input-group-addon"><label for="entrada">Entrada</label></div>
+	        			 	<input type="text" id="entrada" class="form-control"  ng-model="Query.processo.entrada">
+	        			 </div>
+	        		</div>
+	        	</div>
+
+        	</div>
+        	<div class="form-group">
+        		<div class="row">
+        			<div class="col-sm-9 col-sm-push-1">
+        				<div class="panel panel-default">
+        					<div class="panel-heading">
+        						SAEB
+        					</div>
+        					<div class="panel-body">
+        						<div class="col-sm-4">
+	        						<div class="input-group">
+				        			 	<div class="input-group-addon"><label for="saeb-saida">Saída</label></div>
+				        			 	<input type="text" id="saeb-saida" class="form-control"  ng-model="Query.processo.saeb.saida">
+				        			</div>
+        						</div>
+        						<div class="col-sm-4">
+				        			<div class="input-group">
+				        			 	<div class="input-group-addon"><label for="saeb-oficio">Ofício</label></div>
+				        			 	<input type="text" id="saeb-oficio" class="form-control"  ng-model="Query.processo.saeb.oficio">
+				        			</div>
+        						</div>
+								<div class="col-sm-4">
+				        			<div class="input-group">
+				        			 	<div class="input-group-addon"><label for="saeb-oficio">Retorno</label></div>
+				        			 	<input type="text" id="saeb-retorno" class="form-control"  ng-model="Query.processo.saeb.retorno">
+				        			</div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
         		</div>
         	</div>
-        		
-        	</div>
-
-        	<div class="form-group ">
-        	<div class="row">
-        		<div class="col-sm-4 col-sm-push-1">
-        			
-        			<label for="entrada">Entrada</label>
-        			 <input class="form-control" type="date" ng-model="Query.processo.entrada">
+        	<div class="form-group">
+        		<div class="row">
+        			<div class="col-sm-9 col-sm-push-1">
+        				<div class="panel panel-default">
+        					<div class="panel-heading">
+        						UG
+        					</div>
+        					<div class="panel-body">
+        						<div class="col-sm-4">
+	        						<div class="input-group">
+				        			 	<div class="input-group-addon"><label for="ug-retorno">Retorno</label></div>
+				        			 	<input type="text" id="ug-retorno" class="form-control"  ng-model="Query.processo.ug.retorno">
+				        			</div>
+        						</div>
+        						<div class="col-sm-4 col-sm-push-3">
+				        			<div class="input-group">
+				        			 	<div class="input-group-addon"><label for="ug-oficio">Ofício</label></div>
+				        			 	<input type="text" id="ug-oficio" class="form-control"  ng-model="Query.processo.ug.oficio">
+				        			</div>
+        						</div>
+	        				</div>
+        				</div>
+        			</div>
         		</div>
-
-        	</div>
-        		
         	</div>
 
-        	<div class="form-group ">
-        	<div class="row">
-        		<div class="col-sm-4 col-sm-push-1">
-        			
-        			<label for="erros">Inconsistências</label>
-        			<input id="erros" type="text" class="form-control" value="{{ Query.processo.erros}}" ng-model="Query.processo.erros">
-        		</div>
-        		
-        	</div>
         	
-        		
+        	<div class="form-group">
+        		<div class="row" ng-repeat="serv in Query.processo.servidor.persons">
+        			<div class="col-sm-9 col-sm-push-1">
+        				<div class=" panel panel-default">
+        					<div class="panel-heading">Servidor {{$index+1}}:</div>
+        					<div class="panel-body">
+        						<div class="col-sm-4">
+		        					<input id="person{{$index}}" type="text" class="form-control"  ng-model="serv.nome">
+        						</div>
+
+        						<div class="col-sm-4">
+		        					<input id="person{{$index}}" type="text" class="form-control"  ng-model="serv.mat">
+        						</div>
+        						<div class="col-sm-4">
+		        					<input id="person{{$index}}" type="text" class="form-control"  ng-model="serv.funcao">
+        						</div>
+								<hr>
+								<div class="col-sm-12" ng-if="serv.existError">
+									<div class="panel panel-danger">
+										<div class="panel-heading">Erros</div>
+										<div class="panel-body">
+					           				<div class="" ng-repeat="erro in serv.erros">
+					        					<div class="input-group">
+					        						<span class="input-group-addon">{{$index+1}}.</span>
+					        						<input id="erro{{$index}}" type="text" class="form-control"  ng-model="erro">
+					        					</div>
+					        				</div>
+										</div>
+									</div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        			
+        		</div>
         	</div>
 
 

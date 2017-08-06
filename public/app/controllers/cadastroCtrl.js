@@ -81,7 +81,7 @@ app.controller("cadastroCtrl", ["Share", "$timeout", function cadastroCtrl(Share
 		});
 	};
 
-
+	
 
 	vm.alertSuccess = false;
 	vm.alertDanger = false
@@ -98,7 +98,7 @@ app.controller("cadastroCtrl", ["Share", "$timeout", function cadastroCtrl(Share
 					 	}
 			 		}
 			 	} 	
-		
+				
 		
 				 console.log(reg);
 				 console.log("success!");

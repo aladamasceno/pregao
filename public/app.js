@@ -17,7 +17,7 @@ app.config(function($routeProvider, $locationProvider){
 				controllerAs: "Query"
 			})
 			.otherwise({ 
-				redirectTo: '/' 
+				redirectTo: '/login' 
 			});
 
 

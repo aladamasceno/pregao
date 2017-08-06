@@ -13,6 +13,7 @@ var CadastroSchema = new Schema({
 	unidade: {type: String},
 	entrada: {type: Date},
 	erros: {type: String},
+	existError: {type: Boolean},
 	providencias: {type: String},
 	saeb: {
 		saida: {type: Date},
@@ -32,7 +33,8 @@ var CadastroSchema = new Schema({
 					nome: {type: String},
 					funcao: {type: String},
 					mat: {type: String},
-					erros: [String]
+					erros: [String],
+					existError:{type:Boolean}
 				}]
 
 	}
