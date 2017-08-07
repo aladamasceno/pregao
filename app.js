@@ -24,7 +24,7 @@ else {
 
 mongoose.connect(db, {useMongoClient: true}, (error) => {
 	if (error){
-		console.log("ocurr error: " +error);
+		console.log("ocurr error: " + error);
 	}
 	else{
 		console.log("Connected MongoDB")
